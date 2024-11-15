@@ -1,10 +1,10 @@
-// connecting the database
-require('dotenv').config()
+require('dotenv').config();  // .env file ko load karne ke liye
+const mongoose = require('mongoose');
 
-const mongoose = require('mongoose')
-const DB = process.env.DATABASE
-mongoose.connect(DB).then(() => {
-    console.log("Connection successfull!")
-}).catch((err) => {
-    console.log(err)
-})
+// .env se database connection string ko load karein
+const DB = process.env.DATABASE;
+
+// MongoDB connection establish karein
+mongoose.connect(DB, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log("MongoDB connected successfully!"))
+  .catch((err) => console.log("MongoDB connection error:", err));
